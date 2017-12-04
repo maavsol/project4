@@ -8,7 +8,7 @@ const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
 
 
-mongoose.connect('mongodb://localhost/server');
+mongoose.connect('mongodb://localhost/click-for-pizza');
 
 const app = express();
 
@@ -29,7 +29,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
 
 const index = require('./routes/index');
+const users = require('./routes/user-routes');
+
 app.use('/', index);
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
